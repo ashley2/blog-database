@@ -28,14 +28,15 @@ UserSchema.statics.register = (user) => {
 
 UserSchema.statics.validatePassword = (user) => {
   return new Promise((resolve, reject)=>{
-    User.findOne({username: user.usernmae})
-    .populate("+password")
+    User.findOne({username: user.username})
+    .select("+password")
     .exec((err, foundUser)=>{
-      if (err || !user) reject(err || "No user found");
+      if (err || !foundUser) reject(err || "No user found");
       bcrypt.compare(user.password, foundUser.password, (err, isValid)=>{
         if (err || !isValid) reject(err || "Invalid Password");
 
-        resolve();
+        foundUser.password = null;
+        resolve(foundUser);
       })
     })
   })
