@@ -15,11 +15,11 @@ const UserSchema = new mongoose.Schema({
 UserSchema.statics.register = (user) => {
   return new Promise((resolve, reject)=>{
     bcrypt.hash(user.password, 16, function(err, hash) {
-      if(err) {
-        reject(err);
-      }
+      if(err) reject(err);
       user.password = hash;
+      console.log(user);
       User.create(user, function(err, user) {
+        console.log(err || user);
         err ? reject(err) : resolve(user);
       });
     });
@@ -61,12 +61,11 @@ UserSchema.methods.generateJWT = ()=> {
   const exp = new Date(today);
 
   exp.setDate(today.getDate() + 60);
-
   return jwt.sign({
     _id: this._id,
     username: this.username,
     exp: parseInt(exp.getTime() / 1000)
-  }, {secret: CONSTANTS.SECRET})
+  }, CONSTANTS.SECRET)
 }
 
 
