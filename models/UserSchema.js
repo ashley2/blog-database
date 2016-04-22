@@ -43,9 +43,9 @@ UserSchema.statics.validatePassword = (user) => {
 }
 
 UserSchema.statics.middleware = (req, res, next)=>{
-  jwt.verify(req.cookies.auth, (err, payload)=>{
+  jwt.verify(req.cookies.auth, CONSTANTS.SECRET, (err, payload)=>{
     if (err) return res.status(401).send(err);
-
+    console.log(payload);
     User.findById(payload._id)
     .populate("posts")
     .exec((err, user)=>{
@@ -57,7 +57,7 @@ UserSchema.statics.middleware = (req, res, next)=>{
   })
 }
 
-UserSchema.methods.generateJWT = ()=> {
+UserSchema.methods.generateJWT = function() {
   const today = new Date();
   const exp = new Date(today);
 
