@@ -43,9 +43,10 @@ UserSchema.statics.validatePassword = (user) => {
 }
 
 UserSchema.statics.middleware = (req, res, next)=>{
+  if (!req.cookies.auth) return;
   jwt.verify(req.cookies.auth, CONSTANTS.SECRET, (err, payload)=>{
-    if (err) return res.status(401).send(err);
-    console.log(payload);
+    if (err) return res.clearCookie("auth").status(401).send(err);
+
     User.findById(payload._id)
     .populate("posts")
     .exec((err, user)=>{

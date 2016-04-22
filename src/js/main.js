@@ -1,5 +1,5 @@
-import angular from "angular";
-import "angular-ui-router";
+// import angular from "angular";
+// import "angular-ui-router";
 
 (function() {
   'use strict';
