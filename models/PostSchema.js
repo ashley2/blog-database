@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
   title: {type: String, required: true},
-  body: {type: String, required: true},
+  body: {type: String, required: true, select: false},
   tags: [{type: String}],
   author: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
 })
