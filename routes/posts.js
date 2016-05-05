@@ -6,7 +6,7 @@ router.get("/all/:name/", (req, res)=>{
   User.findOne({username: req.params.name})
   .populate("posts")
   .exec( (err, user)=>{
-    err ? res.status(400).send(err) : res.send(user);
+    err ? res.status(400).send(err) : res.send(user)
   })
 })
 
@@ -17,13 +17,13 @@ router.post("/", User.middleware, (req, res)=>{
 
     req.user.posts.push(post._id);
     req.user.save(
-      err=> err ? res.status(400).send(err) : res.end();
+      err=> err ? res.status(400).send(err) : res.end()
     )
   })
 })
 
 router.get("/one/:id", (req, res)=>{
-  
+
 })
 
 
