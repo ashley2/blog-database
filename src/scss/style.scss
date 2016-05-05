@@ -1,0 +1,50 @@
+@mixin one-hundred() {
+  height: 100%;
+  width: 100%;
+}
+body, h1 {
+  margin: 0;
+}
+
+h1:hover {
+  cursor: pointer;
+}
+
+body, html { 
+  @include one-hundred();
+  overflow-x: hidden;
+}
+
+.container {
+  @include one-hundred();
+  background-color: whitesmoke;
+  display: table;
+}
+
+.vertical-cell {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%; 
+  .form-container {
+    height: 0;
+    overflow: hidden;
+    transition: all 1s;
+    padding: 0px 25px;
+    background-color: ghostwhite;
+    display: inline-block;
+    margin: 0 auto;
+    &.revealed {
+      height: 168px;
+      padding: 30px 25px;
+    }
+    label, input {
+      display: block;
+      margin: 15px 0;
+    }
+    input {
+      &::-webkit-input-placeholder {
+        text-align: center;
+      }
+    }
+  }
+}

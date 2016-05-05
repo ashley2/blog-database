@@ -5,9 +5,12 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser")
 const app = express();
+const morgan = require("morgan");
+
 
 const CONSTANTS = require("./config/constants");
 
+app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

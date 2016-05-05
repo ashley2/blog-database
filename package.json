@@ -33,6 +33,7 @@
     "gulp-sass": "^2.2.0",
     "jsonwebtoken": "^5.7.0",
     "mongoose": "^4.4.12",
+    "morgan": "^1.7.0",
     "webpack": "^1.13.0"
   }
 }

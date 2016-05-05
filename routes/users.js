@@ -6,6 +6,7 @@ router.post("/register", (req, res)=>{
   .then(
     user=> {
       const token = user.generateJWT();
+      user.password = null;
       res.cookie("auth", token).send(user);
     },
     err=> res.status(400).send(err)

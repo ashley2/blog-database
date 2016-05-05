@@ -1,0 +1,20 @@
+
+<div class="container">
+  <div class="vertical-cell" align="center">
+    <h1 ng-click="login.reveal = true">Login</h1>
+    <div class="form-container" 
+    ng-class="{ revealed: login.reveal}">
+    <form ng-submit="login.login(user)">
+
+      <label for="username">Username</label>
+      <input type="text" placeholder="username" ng-model="user.username">
+      
+      <label for="password">Password</label>
+      <input type="password" placeholder="password" ng-model="user.password">
+      
+      <button class="login">Login</button>
+      
+    </form>
+  </div>
+</div>
+</div>

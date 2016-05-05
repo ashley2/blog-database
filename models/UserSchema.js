@@ -17,9 +17,7 @@ UserSchema.statics.register = (user) => {
     bcrypt.hash(user.password, 16, function(err, hash) {
       if(err) reject(err);
       user.password = hash;
-      console.log(user);
       User.create(user, function(err, user) {
-        console.log(err || user);
         err ? reject(err) : resolve(user);
       });
     });
@@ -43,7 +41,7 @@ UserSchema.statics.validatePassword = (user) => {
 }
 
 UserSchema.statics.middleware = (req, res, next)=>{
-  if (!req.cookies.auth) return;
+  if (!req.cookies.auth) return res.status(401).end();
   jwt.verify(req.cookies.auth, CONSTANTS.SECRET, (err, payload)=>{
     if (err) return res.clearCookie("auth").status(401).send(err);
 
