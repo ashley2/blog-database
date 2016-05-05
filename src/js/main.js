@@ -1,13 +1,3 @@
-// import angular from "angular";
-// import "angular-ui-router";
+import "./module.js";
 
-(function() {
-  'use strict';
-  angular.module("blogApp", ["ui.router"])
-
-  .config(StateConfig)
-  StateConfig.$inject = ["$stateProvider", "$urlRouterProvider"]
-  function StateConfig($stateProvider, $urlRouterProvider){
-    $urlRouterProvider.otherwise("/");
-  }
-}());
+import "./controllers/LoginCtrl.js";
