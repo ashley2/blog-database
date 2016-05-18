@@ -18,6 +18,7 @@ UserSchema.statics.register = (user) => {
       if(err) reject(err);
       user.password = hash;
       User.create(user, function(err, user) {
+        user.password = null;
         err ? reject(err) : resolve(user);
       });
     });
@@ -29,7 +30,14 @@ UserSchema.statics.validatePassword = (user) => {
     User.findOne({username: user.username})
     .select("+password")
     .exec((err, foundUser)=>{
-      if (err || !foundUser) reject(err || "No user found");
+      if (err) reject(err);
+      if (!foundUser) {
+        User.register(user)
+        .then(
+          newUser=> resolve(newUser),
+          err => reject(err)
+        );
+      }
       bcrypt.compare(user.password, foundUser.password, (err, isValid)=>{
         if (err || !isValid) reject(err || "Invalid Password");
 

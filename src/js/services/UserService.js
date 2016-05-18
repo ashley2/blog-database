@@ -8,7 +8,7 @@
 
   function UserService($http){
     this.login = function(user){
-      return $http.post('/users/register', user)
+      return $http.post('/users/login', user)
     }
   }
 
@@ -17,4 +17,3 @@
 
 
 }())
-
