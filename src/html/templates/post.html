@@ -1,0 +1,19 @@
+<form id="postForm" ng-submit="post.addPost(post.newPost)">
+
+  <label for="">Title:</label>
+  <input ng-model="post.newPost.title" placeholder="Title" type="text">
+
+  <label for="">Body:</label>
+  <textarea ng-model="post.newPost.body" name="body" id="body" ng-class="{expand : newPost.body.length > 1000}" placeholder="..."></textarea>
+
+  <label for="">Tags</label>
+  <input ng-model="post.newPost.tags" type="text" placeholder="#tags">
+  <a href class="tagBtn" ng-click="post.addTag(post.newPost.tsags)">Add</a>
+  
+  <div class="tagBox">
+    <span class="tags" ng-repeat="tag in post.tags">#{{tag}}<i ng-click="post.remove(tag)" class="fa fa-times" aria-hidden="true"></i></span>
+  </div>
+
+  <button type="submit">Submit</button>
+
+</form>

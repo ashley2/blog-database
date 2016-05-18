@@ -3,16 +3,16 @@
     angular.module("blogApp")
     .controller("LoginCtrl", LoginCtrl);
 
-    LoginCtrl.$inject = ["UserService"];
+    LoginCtrl.$inject = ["UserService", "$state"];
 
-    function LoginCtrl(UserService){
+    function LoginCtrl(UserService, $state){
       let vm = this;
 
 
       vm.login = (user) => {
         UserService.login(user)
         .then(
-          res=> console.log(res),
+          res=> $state.go("post"),
           err=> console.error(err)
           )
       }

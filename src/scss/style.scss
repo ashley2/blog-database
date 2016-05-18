@@ -48,3 +48,37 @@ body, html {
     }
   }
 }
+
+#postForm {
+  text-align: center;
+  label {
+    display: block;
+  }
+  textarea {
+    height: 200px;
+    width: 500px;
+    transition: height 1s ease;
+    &.expand {
+      height: 400px;
+    }
+  }
+  .tagBox {
+    border: 2px solid black;
+    min-height: 2rem;
+    width: 40%;
+    margin: 0 auto;
+
+  }
+  .tags {
+    margin-right: 12px;
+    .fa {
+      color: red;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+

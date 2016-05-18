@@ -32,7 +32,7 @@ UserSchema.statics.validatePassword = (user) => {
     .exec((err, foundUser)=>{
       if (err) reject(err);
       if (!foundUser) {
-        User.register(user)
+        return User.register(user)
         .then(
           newUser=> resolve(newUser),
           err => reject(err)

@@ -15,6 +15,12 @@
       templateUrl: './templates/login.html',
       controller: "LoginCtrl",
       controllerAs: "login"
+    }) 
+    .state("post", {
+      url: '/post',
+      templateUrl: './templates/post.html',
+      controller: "PostCtrl",
+      controllerAs: "post"
     })
 
   }
